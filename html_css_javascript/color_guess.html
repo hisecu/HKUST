@@ -46,26 +46,26 @@
         if(entered_color == expected_color) {
           myBody=document.getElementsByTagName("body")[0];
           myBody.style.background = entered_color;
-          alert("Congratulations! You have guessed the color!\n\n"
-                +"It took you " + amount_of_guesses + " guesses to finish the game!\n\n"
-                +"You can see the color in the background.\n");
+          alert("Well done! The color you picked is correct!\n\n"
+                +"It took you " + amount_of_guesses + " guesses to find this color!\n\n"
+                +"The background will be set to this color.\n");
           finished = true;
         }
         else if(colors_ary.indexOf(entered_color) != -1 &&
                 entered_color < expected_color) {
-          alert("Sorry, your guess is not correct!\n\n"
-                + "Hint: your color is alphabetically lower than mine.\n\n"
-                + "Please try again.\n");
+          alert("Sorry, this is not the color we are after!\n\n"
+                + "Note that your color is alphabetically lower than the one we are after.\n\n"
+                + "Give it a try again, do not give up.\n");
         }
         else if(colors_ary.indexOf(entered_color) != -1 &&
                 entered_color > expected_color) {
-          alert("Sorry, your guess is not correct!\n\nHint: your color is alphabetically higher than mine.\n\nPlease try again.\n");
+          alert("Sorry, this is incorrect!\n\nHint: your color is alphabetically higher than the one we are after.\n\nGive it a try again, it is too early to give up.\n");
         }
         else if (colors_ary.indexOf(entered_color) == -1) {
-          alert("Sorry, I don't recognize your color.\n\nPlease try again.\n");
+          alert("Sorry, I don't recognize your color.\n\nPlease try again, maybe you made a typo.\n");
         }
         else {
-          alert("You entered: " + entered_color);
+          alert("You entered the following color: " + entered_color);
         }
         return(finished);
       }
