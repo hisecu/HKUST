@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+ <!--
+
+     Assignment for the course HTML/CSS/Javascript by Hong Kong University on Coursera.
+
+     Week 2 Introduction to JavaScript - Assessment Task, part  2/2
+
+     By: Carel Fenijn, September 2015
+
+ -->
+  <head>
+  <title>Color Guess Game</title>
+    <script>
+      function do_game() {
+        var colors_ary =
+                   [
+                    "AliceBlue", "AntiqueWhite", "Aqua",
+                    "Aquamarine", "Azure", "Beige",
+                    "Bisque", "Black", "BlanchedAlmond",
+                    "Blue", "BlueViolet", "Brown",
+                    "BurlyWood", "CadetBlue", "Chartreuse",
+                    "Violet", "Wheat", "White",
+                    "WhiteSmoke", "Yellow", "YellowGreen"
+                   ]; 
+        random_nr = Math.floor((Math.random() * colors_ary.length + 1));
+        var expected_color = colors_ary[random_nr];
+        alert("For debugging and marking purposes, you get this hint of the color you must guess : " + expected_color + "\n\n");
+        var finished = false;          // init
+        var amount_of_guesses=0;       // init
+
+        while(!(finished)) {
+          var entered_color = prompt("I am thinking of one of these colors:\n\n"
+                                    + colors_ary.join(", ") // + "\nHint: " + expected_color
+                                    + "\n\nWhat color am I thinking of?\n");
+          amount_of_guesses++;
+          finished=check_guess(amount_of_guesses,colors_ary,entered_color,expected_color);
+
+        }
+      }
+
+      function check_guess(amount_of_guesses,colors_ary,entered_color,expected_color) {
+
+        var finished=false;              // init
+
+        if(entered_color == expected_color) {
+          myBody=document.getElementsByTagName("body")[0];
+          myBody.style.background = entered_color;
+          alert("Congratulations! You have guessed the color!\n\n"
+                +"It took you " + amount_of_guesses + " guesses to finish the game!\n\n"
+                +"You can see the color in the background.\n");
+          finished = true;
+        }
+        else if(colors_ary.indexOf(entered_color) != -1 &&
+                entered_color < expected_color) {
+          alert("Sorry, your guess is not correct!\n\n"
+                + "Hint: your color is alphabetically lower than mine.\n\n"
+                + "Please try again.\n");
+        }
+        else if(colors_ary.indexOf(entered_color) != -1 &&
+                entered_color > expected_color) {
+          alert("Sorry, your guess is not correct!\n\nHint: your color is alphabetically higher than mine.\n\nPlease try again.\n");
+        }
+        else if (colors_ary.indexOf(entered_color) == -1) {
+          alert("Sorry, I don't recognize your color.\n\nPlease try again.\n");
+        }
+        else {
+          alert("You entered: " + entered_color);
+        }
+        return(finished);
+      }
+
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
+
+</head>
+
+<body onload="do_game()">
+
+</body>
+
+</html>
+
+

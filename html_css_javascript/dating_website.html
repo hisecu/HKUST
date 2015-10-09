@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html>
+<!--
+     Assignment for the course HTML, CSS and JavaScript
+     from The Hong Kong University of Science and Technology
+     on Coursera.
+
+     By: Carel Fenijn, September 2015
+-->
+
+<!--
++++The background of each fieldset is lightyellow e.g. background:lightyellow.
++++The border of each fieldset is yellow, with 10px width e.g. border:10px solid yellow
++++The fieldset needs to have margin-bottom:10px
++++The width of each fieldset is 720px
++++The width of each label is 180px
++++The label text needs to have display:inline-block
++++The label text needs to be right-align and top-align 
++++The labels of the checkbox and the radio needs to have width:auto
++++For the words on both sides of the two range, you can use any appropriate style e.g. text-align:center
++++The textarea needs to be width:360px and height:50px
+-->
+
+<head>
+  <title>Simple Dating Website</title>
+  <style>
+    .imageclass {
+                  width:100px;
+                }
+    .fslabelclass {
+                    width:180px;
+                    display:inline-block;
+                    text-align:right;
+                    vertical-align:top;
+                  }
+    .cblabelclass {
+                    width:auto;
+                  }
+    .rlabelclass {
+                   width:auto;
+                 }
+    .lrangewclass {
+                    text-align:center;
+                    <!-- background:red; -->
+                  }
+    .rrangewclass {
+                    text-align:center;
+                    <!-- background:purple; -->
+                  }
+    fieldset {
+              background:lightyellow;
+              border:10px solid yellow;
+              margin-bottom:10px;
+              width:720px;
+             }
+    textarea {
+              width:360px;
+              height:50px;
+             }
+    label:hover { font-size:40px };
+    input:hover { font-size:40px };
+  </style>
+
+</head>
+
+<body>
+  <h1>Please Enter Your Details For Our Dating Website!</h1>
+
+  <form action="https://ihome.ust.hk/~rossiter/cgi-bin/show_everything.php" method="post" id="datingform">
+
+<!--
++++     input type="file" [required] 
++++     An img element with id="preview"
+-->
+
+    <fieldset>
+      <legend>Your Face</legend>
+      <label for="avatar" class="fslabelclass">Your image:</label>
+      <input type="file"
+             id="avatar"
+             name="avatar"
+             action="https://ihome.ust.hk/~rossiter/cgi-bin/show_everything.php"
+             method="post"
+             enctype="multipart/form-data">
+      <br>
+      Image preview: <img id="preview" class="imageclass">
+
+
+    </fieldset>
+
+    <fieldset>
+      <legend>Your General Details</legend>
+
+<!--
++++    Second fieldset, with legend ‘Your general details’
++++
++++    input type= "text" ... [required]
++++    input type="radio" ... (two of these) [required]
++++    input type="number" ... [required]
++++    input type="date" ...
++++    input type="color" ...
++++    select , with 6 option , to handle ‘no selection’ plus 5 different countries 
+-->
+      <label for="name" class="fslabelclass">Name:</label>
+      <input type="text" placeholder="Your full name" required><br>
+      <label for="gender" class="fslabelclass">Gender:</label>
+      <input type="radio" name="gender" value="Male" class="rlabelclass" required>Male
+      <input type="radio" name="gender" value="Female" class="rlabelclass" required>Female<br>
+      <label for="age" class="fslabelclass">Age:</label>
+      <input type="number" required><br>
+      <label for="dateofbirth" class="fslabelclass">Date of birth:</label>
+      <input type="date"><br>
+      <label for="favoritecolor" class="fslabelclass">Favorite Color:</label>
+      <input type="color"><br>
+      <label for="country" class="fslabelclass">Which country:</label>
+      <select name="countries">
+        <option value="no selection">no selection</option>
+        <option value="Belgium">Belgium</option>
+        <option value="China">China</option>
+        <option value="Indonesia">Indonesia</option>
+        <option value="Netherlands">Netherlands</option>
+        <option value="United States">United States</option>
+      </select>
+
+    </fieldset>
+
+
+<!--
++++    Third fieldset, with legend ‘Your indicators’
++++
++++    input type="range" min="0" max="100" ...
++++    input type="range" min="0" max="100" ... 
+-->
+    <fieldset>
+      <legend>Your Indicators</legend>
+      <label for="height" class="fslabelclass">Height:</label>
+      <span class="lrangewclass">Short</span> <input type="range" min="0" max="100"> <span class="rrangewclass">Tall</span>
+      <br>
+      <label for="salary" class="fslabelclass">Salary:</label>
+      <span class="lrangewclass">Poor</span> <input type="range" min="0" max="100"> <span class="rrangewclass">Rich</span>
+
+    </fieldset>
+
+    <fieldset>
+      <legend>Your Contact Information</legend>
+
+<!--
++++    Fourth fieldset, with legend ‘Your Contact Information’
++++
++++    input type="email" ... [required]
++++    input type="tel" ...
++++    textarea ...
++++    input type="checkbox" ... , three of these are needed for the three types of contact method 
+-->
+
+      <label for="email" class="fslabelclass">Email:</label>
+      <input type="email" required><br>
+
+      <label for="mobile" class="fslabelclass">Mobile:</label>
+      <input type="tel"><br>
+
+      <label for="address" class="fslabelclass">Address:</label>
+      <textarea name="address" form="datingform"></textarea><br>
+
+      <label for="contacmethod" class="fslabelclass">Method to contact you:</label>
+      <input type="checkbox" name="contactmethod" value="email" class="cblabelclass">Email
+      <input type="checkbox" name="contactmethod" value="whatsapp" class="cblabelclass">Whatsapp
+      <input type="checkbox" name="contactmethod" value="chat" class="cblabelclass">In-app chat<br>
+
+    </fieldset>
+
+<!--
++++    At the end (not in any fieldset):
++++
++++    input type="submit"
+-->
+
+    <input type="submit" value="Submit">
+
+  </form>
+  <script src="https://www.cse.ust.hk/~rossiter/dating_web_site.js"></script>
+</body>
+</html>

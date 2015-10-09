@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+ <!--
+
+     Assignment for the course HTML/CSS/Javascript by Hong Kong University on Coursera.
+
+     Week 3 Advanced JavaScript - Assessment Task, part  4/4
+
+     By: Carel Fenijn, October 2015
+
+ -->
+  <head>
+  <title>Smiley Matching Game</title>
+
+    <style>
+      img {
+        position:absolute;
+        height:50px;
+        width:50px;
+      }
+      div {
+        position:absolute;
+        height:500px;
+        width:500px;
+      }
+      #rightSide { left: 500px;
+                    border-left: 1px solid black }
+    </style>
+
+
+  </head>
+
+  <body id="theBody" onload="generateFaces()">
+    <h1>Matching Game</h1>
+    <p>Click on the extra smiling face on the left.</p>
+    <div id="leftSide"></div>
+    <div id="rightSide"></div>
+
+    <script>
+        var numberOfFaces = 5;
+        var theRightSide =
+            document.getElementById("rightSide");
+        var theLeftSide =
+            document.getElementById("leftSide"); 
+        function generateFaces() {
+            for(i=0 ; i < numberOfFaces; i++) {
+
+                // Determine random positions for a new smiley
+                // it looks nicer if the smiley does not touch a border
+                random_smiley_top_pos = Math.random() * 440;
+                random_smiley_top_pos = Math.floor(random_smiley_top_pos);
+                random_smiley_left_pos = Math.random() * 440;
+                random_smiley_left_pos = Math.floor(random_smiley_left_pos);
+
+                smiley_img = document.createElement("img");
+                // Note: We use a remote URI for the image as
+                // we cannot be sure a local one will work
+                smiley_img.setAttribute('src',
+                    smiley_img.src = "http://home.cse.ust.hk/~rossiter/mooc/matching_game/smile.png");
+                smiley_img.style.top = random_smiley_top_pos + "px";
+                smiley_img.style.left = random_smiley_left_pos + "px";
+                theLeftSide.appendChild(smiley_img);
+            } 
+
+            leftSideImages = theLeftSide.cloneNode(true);
+
+            // Delete the last child of leftSideImages 
+            leftSideImages.removeChild(leftSideImages.lastChild);
+    
+            // Add leftSideImages to the rightSide div
+            theRightSide.appendChild(leftSideImages);
+
+            var theBody = document.getElementsByTagName("body")[0];
+
+            theLeftSide.lastChild.onclick= function nextLevel(event) {
+                while(theRightSide.firstChild)
+                    theRightSide.removeChild(theRightSide.firstChild);
+                while(theLeftSide.firstChild)
+                    theLeftSide.removeChild(theLeftSide.firstChild);
+                event.stopPropagation();
+                numberOfFaces += 5;
+                generateFaces();
+            };
+
+            theBody.onclick = function gameOver() {
+                alert("Game Over!");
+                theBody.onclick = null;
+                theLeftSide.lastChild.onclick = null;
+            }; 
+
+        }
+    </script>
+
+  </body>
+
+</html>
